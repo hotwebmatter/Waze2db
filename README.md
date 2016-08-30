@@ -16,3 +16,7 @@ In July of 2016, a team of developers led by Joseph Curtis competed in the TechH
 Our project, the "Providence Pothole Killer," was a demo web app (Node.js / Leaflet.js) showing one possible interface to visualize the Waze data.
 
 We won the competition. (Hooray!) That code is available [here](https://github.com/toklok/pvdHack), in Joe's github repo.
+
+However, the Node.js app was only a demo. Due to the time constraints of the Hackathon, we polled the Waze data using `curl` and saved the JSON in a text file, which is what we used to create the demo map.
+
+What we needed was a way to automate the data collection and create a persistent data store, which could be exposed to the web via a RESTful API.
