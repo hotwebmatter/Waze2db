@@ -34,7 +34,7 @@ https://manual.cs50.net/library/#php
 
 David J. Malan at Harvard has written a very friendly front-end to PHP's PDO, or [PHP Data Objects](http://php.net/manual/en/book.pdo.php).
 
-Since both the back-end data store and the front-end map visualization are partially based on code that I originally wrote for my CS50 coursework, I used the CS50::query interface to PDO.
+Since both the back-end data store (this repository) and the front-end map visualization (another repo, coming soon!) are partially based on code that I originally wrote for my CS50 coursework, I used the CS50::query interface to PDO.
 
 I didn't want to rewrite all of the database queries if I could help it, so I moved the code out of CS50's IDE and into my own web hosting without modification. Immediately, it broke.
 
