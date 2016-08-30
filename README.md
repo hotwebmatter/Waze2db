@@ -20,3 +20,11 @@ We won the competition. (Hooray!) That code is available [here](https://github.c
 However, the Node.js app was only a demo. Due to the time constraints of the Hackathon, we polled the Waze data using `curl` and saved the JSON in a text file, which is what we used to create the demo map.
 
 What we needed was a way to automate the data collection and create a persistent data store, which could be exposed to the web via a RESTful API.
+
+# August 2016: CS50 Mashup
+In August of 2016, I created the missing piece of the puzzle as part of my final project for LaunchCode's CS50x course at the University of Rhode Island.
+
+There are two pieces to my implementation, which I will publish separately:
+
+* `waze2db.php` is an automated data collector which polls the Waze GeoJSON feed every two minutes via `cron`.
+* There is also a front-end visualization using the Google Maps API, which you can see in action [here](http://pvdpotholedb.hotwebmatter.com/map.html). I plan to publish this component separately in September.
