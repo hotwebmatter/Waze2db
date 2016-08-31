@@ -29,6 +29,11 @@ There are two pieces to my implementation, which I will publish separately:
 * `waze2db.php` is an automated data collector which polls the Waze GeoJSON feed every two minutes via `cron`.
 * There is also a front-end visualization using the Google Maps API, which you can see in action [here](http://pvdpotholedb.hotwebmatter.com/map.html). I plan to publish this component separately in September.
 
+Currently, the front-end does not offer much of an API implementation, but there are two ways that you can get at the data if you'd like to use the markers in your own map:
+
+* [ALL THE MARKERS](http://pvdpotholedb.hotwebmatter.com/data.php): The GeoJSON stream at `http://pvdpotholedb.hotwebmatter.com/data.php` returns all of the objects from the database, although it does not display all of the fields in the `markers` table.
+* [JUST A SCREENFUL](http://pvdpotholedb.hotwebmatter.com/potholes.php?ne=41.868658668750605%2C-71.29941358642577&sw=41.771304329637616%2C-71.53218641357421): The GeoJSON stream at `http://pvdpotholedb.hotwebmatter.com/potholes.php` returns only the markers that fit within the bounding box of a Google Maps object. You'll need to pass it the latitude and longitude of the northeast and southwest corners in a well-formed query string, like `?ne=41.868658668750605%2C-71.29941358642577&sw=41.771304329637616%2C-71.53218641357421`, or else it will exit with HTTP response code 400, which just looks like nothing happened. To see the raw data, try clicking the link on "JUST A SCREENFUL" above.
+
 # Installation / Configuration
 
 `waze2db.php` requires PHP 5.4 or higher. You'll need a relational database back-end (I'm using MySQL). And you'll need `cron`.
