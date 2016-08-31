@@ -75,6 +75,16 @@ First, you'll want to set up your database back-end. If you don't want to mess w
 
 It's worth noting that I plan to change the database structure a bit in the near future, since `lastUpdated` and `timesUpdated` don't do anything particularly useful. Also, the composite `UNIQUE KEY` constraint will soon be replaced with a simpler `UNIQUE KEY` -- since the Waze GeoJSON contains a `uuid` field which is a unique identifier for each alert. But that's the table structure that works with this version of the data collector.
 
+# config.json
+
+Next, you'll need to edit `config.json` to provide authentication credentials for your MySQL database.
+
+Replace the `**TODO**` after `"name":` with the name of your database. (In the example above, it is `mapdata`.)
+
+Replace the `**TODO**` after `"username":` with the username of your database user.
+
+Replace the `**TODO**` after `"password":` with the password of your database user.
+
 # cron table setup (and peculiarities)
 
 `cron` is pretty well-documented. Basically, you can edit your `crontab` with `crontab -e`, and list it with `crontab -l`. For more info, `man crontab` may be helpful. Or try Google. :)
