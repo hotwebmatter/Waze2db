@@ -29,34 +29,14 @@ There are two pieces to my implementation, which I will publish separately:
 * `waze2db.php` is an automated data collector which polls the Waze GeoJSON feed every two minutes via `cron`.
 * There is also a front-end visualization using the Google Maps API, which you can see in action [here](http://pvdpotholedb.hotwebmatter.com/map.html). I plan to publish this component separately in September.
 
-# CS50::query
-https://manual.cs50.net/library/#php
+# Installation / Configuration
 
-David J. Malan at Harvard has written a very friendly front-end to PHP's PDO, or [PHP Data Objects](http://php.net/manual/en/book.pdo.php).
+`waze2db.php` requires PHP 5.4 or higher. You'll need a relational database back-end (I'm using MySQL). And you'll need `cron`.
 
-Since both the back-end data store (this repository) and the front-end map visualization (another repo, coming soon!) are partially based on code that I originally wrote for my CS50 coursework, I used the CS50::query interface to PDO.
+It is not a typical PHP web app -- it's a PHP CLI app intended to be run from the command-line interface.
 
-I didn't want to rewrite all of the database queries if I could help it, so I moved the code out of CS50's IDE and into my own web hosting without modification. Immediately, it broke.
+Therefore, it does not need to go in a `public_html` directory --  you can set it up absolutely anywhere.
 
-That's when I discovered that CS50::query also requires [CS50 ID](https://manual.cs50.net/id/), which checks to make certain that you are a Harvard student or affiliate before allowing you to use the library.
+If you have your own server or VPS, you might want to put it under `/opt` somewhere.
 
-Luckily, David Malan has licensed his software under the very permissive Open Source [BSD 3-Clause License](http://www.opensource.org/licenses/BSD-3-Clause), which says, in part:
-
-     * Redistribution and use in source and binary forms, with or without
-     * modification, are permitted provided that the following conditions are
-     * met:
-     *
-     * * Redistributions of source code must retain the above copyright notice,
-     *   this list of conditions and the following disclaimer.
-     * * Redistributions in binary form must reproduce the above copyright
-     *   notice, this list of conditions and the following disclaimer in the
-     *   documentation and/or other materials provided with the distribution.
-     * * Neither the name of CS50 nor the names of its contributors may be used
-     *   to endorse or promote products derived from this software without
-     *   specific prior written permission.
-
-"With or without modification" sounded good to me, so I have removed the parts of CS50::query that require JanRain's OpenID library. It works now!
-
-Also, this is a good time for me to note that nobody from CS50 (neither David J. Malan, nor Rob Bowden, nor Zamyla Chan, nor Doug Lloyd, nor any other Harvard affiliate) has endorsed or promoted `waze2db.php` in any way.
-
-On the other hand, I enthusiastically endorse and promote CS50. It's a great class! You should [sign up and take it for free through edX](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)!
+If you are using shared hosting, you might want to install it under `$HOME/bin/`. Just be aware that you will need `cron` to run this, so you will most likely require SSH access to a shell environment. FTP alone is not good enough.
