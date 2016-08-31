@@ -74,3 +74,23 @@ First, you'll want to set up your database back-end. If you don't want to mess w
     ) ENGINE=InnoDB;
 
 It's worth noting that I plan to change the database structure a bit in the near future, since `lastUpdated` and `timesUpdated` don't do anything particularly useful. Also, the composite `UNIQUE KEY` constraint will soon be replaced with a simpler `UNIQUE KEY` -- since the Waze GeoJSON contains a `uuid` field which is a unique identifier for each alert. But that's the table structure that works with this version of the data collector.
+
+# `cron` setup (and peculiarities)
+
+`cron` is pretty well-documented. Basically, you can edit your `crontab` with `crontab -e`, and list it with `crontab -l`. For more info, `man crontab` may be helpful. Or try Google. :)
+
+Be aware that `cron` does not execute commands in the usual shell environment, so it requires absolute pathnames in the `crontab`. You can't use a path like `$HOME/bin/waze2db.php`. And you can't start the script with a "shebang" like like `#!/usr/bin/env php` because that requires `env` to resolve the path to the PHP interpreter. Instead, you want a `crontab` entry like this:
+
+    */2 * * * * /usr/local/bin/php54 /home/webothmatter/cs50/bin/waze2db.php >> /home/webothmatter/cs50/bin/log/waze2db.log
+
+Or, more generally:
+
+    */2 * * * * /path/to/php /path/to/waze2db.php >> /path/to/waze2db.log
+
+# `waze2db.log`
+
+In its current incarnation, `waze2db.php` doesn't do proper logging. Instead, every two minutes, it echoes a status message with a timestamp to `STDOUT`, which we redirect to a log file via the `>>` redirector in the `crontab` entry.
+
+The log file is primarily useful _only_ for testing that the script is functioning. If you don't want to continue logging after you've got things set up, you can edit your `crontab` entry to remove the `>>` redirector and everything after it:
+
+    */2 * * * * /path/to/php /path/to/waze2db.php
