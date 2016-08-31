@@ -40,3 +40,37 @@ Therefore, it does not need to go in a `public_html` directory --  you can set i
 If you have your own server or VPS, you might want to put it under `/opt` somewhere.
 
 If you are using shared hosting, you might want to install it under `$HOME/bin/`. Just be aware that you will need `cron` to run this, so you will most likely require SSH access to a shell environment. FTP alone is not good enough.
+
+# MySQL table structure
+
+First, you'll want to set up your database back-end. If you don't want to mess with the PHP PDO drivers, you'll use MySQL:
+
+    CREATE DATABASE IF NOT EXISTS 'mapdata`;
+    
+    -- 
+    -- Table structure for table `markers`
+    -- 
+    
+    DROP TABLE IF EXISTS `markers`;
+    CREATE TABLE `markers` (
+      `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+      `pubMillis` bigint(13) NOT NULL,
+      `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      `timesUpdated` int(10) NOT NULL,
+      `longitude` decimal(8,6) NOT NULL,
+      `latitude` decimal(8,6) NOT NULL,
+      `roadType` int(1) DEFAULT NULL,
+      `street` varchar(255) DEFAULT NULL,
+      `country` char(2) DEFAULT NULL,
+      `city` varchar(255) DEFAULT NULL,
+      `type` varchar(255) DEFAULT NULL,
+      `subtype` varchar(255) DEFAULT NULL,
+      `magvar` int(3) DEFAULT NULL,
+      `reportRating` int(1) DEFAULT NULL,
+      `confidence` int(1) DEFAULT NULL,
+      `reliability` int(1) DEFAULT NULL,
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `locationUnique` (`longitude`,`latitude`,`pubMillis`)
+    ) ENGINE=InnoDB;
+
+It's worth noting that I plan to change the database structure a bit in the near future, since `lastUpdated` and `timesUpdated` don't do anything particularly useful. Also, the composite `UNIQUE KEY` constraint will soon be replaced with a simpler `UNIQUE KEY` -- since the Waze GeoJSON contains a `uuid` field which is a unique identifier for each alert. But that's the table structure that works with this version of the data collector.
