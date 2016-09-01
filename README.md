@@ -13,7 +13,7 @@ Our goal is to make the Waze data accessible to the Providence Department of Pub
 # July 2016: TechHire Code Sprint and Hackathon
 In July of 2016, a team of developers led by Joseph Curtis competed in the TechHire Hackathon at the Tech Collective in Olneyville.
 
-Our project, the "Providence Pothole Killer," was a demo web app (Node.js / Leaflet.js) showing one possible interface to visualize the Waze data.
+Our project, the "Providence Pothole Killer," was a JavaScript web app (Node.js / Leaflet.js) demonstrating one possible interface to visualize the Waze data.
 
 We won the competition. (Hooray!) That code is available [here](https://github.com/toklok/pvdHack), in Joe's github repo.
 
