@@ -94,7 +94,7 @@ Replace the `**TODO**` after `"password":` with the password of your database us
 
 `cron` is pretty well-documented. Basically, you can edit your `crontab` with `crontab -e`, and list it with `crontab -l`. For more info, `man crontab` may be helpful. Or try Google. :)
 
-Be aware that `cron` does not execute commands in the usual shell environment, so it requires absolute pathnames in the `crontab`. You can't use a path like `$HOME/bin/waze2db.php`. And you can't start the script with a "shebang" like like `#!/usr/bin/env php` because that requires `env` to resolve the path to the PHP interpreter. Instead, you want a `crontab` entry like this:
+Be aware that `cron` does not execute commands in the usual shell environment, so it requires absolute pathnames in the `crontab`. You can't use a path like `$HOME/bin/waze2db.php`. And you can't start the script with a "shebang" line like `#!/usr/bin/env php` because that requires `env` to resolve the path to the PHP interpreter. Instead, you want a `crontab` entry like this:
 
     */2 * * * * /usr/local/bin/php54 /home/webothmatter/cs50/bin/waze2db.php >> /home/webothmatter/cs50/bin/log/waze2db.log
 
@@ -109,6 +109,10 @@ In its current incarnation, `waze2db.php` doesn't do proper logging. Instead, ev
 The log file is primarily useful _only_ for testing that the script is functioning. If you don't want to continue logging after you've got things set up, you can edit your `crontab` entry to remove the `>>` redirector and everything after it:
 
     */2 * * * * /path/to/php /path/to/waze2db.php
+    
+Or, better yet, redirect `STDOUT` to `/dev/null`:
+
+    */2 * * * * /path/to/php /path/to/waze2db.php >> /dev/null
 
 # CS50::query
 https://manual.cs50.net/library/#php
