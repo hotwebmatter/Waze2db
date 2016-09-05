@@ -59,6 +59,7 @@ First, you'll want to set up your database back-end. If you don't want to mess w
     DROP TABLE IF EXISTS `markers`;
     CREATE TABLE `markers` (
       `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+      `uuid` varchar(255) NOT NULL,
       `pubMillis` bigint(13) NOT NULL,
       `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
       `timesUpdated` int(10) NOT NULL,
@@ -71,6 +72,7 @@ First, you'll want to set up your database back-end. If you don't want to mess w
       `type` varchar(255) DEFAULT NULL,
       `subtype` varchar(255) DEFAULT NULL,
       `magvar` int(3) DEFAULT NULL,
+      `reportDescription` varchar(255) DEFAULT NULL,
       `reportRating` int(1) DEFAULT NULL,
       `confidence` int(1) DEFAULT NULL,
       `reliability` int(1) DEFAULT NULL,
