@@ -46,8 +46,8 @@
 //              $item->city = "***UNDEFINED***";
 //          }
             // put it in the database
-            $fields = "pubMillis, timesUpdated, longitude, latitude, roadType, street, country, city, type, subtype, magvar, reportRating, confidence, reliability";
-            $result = CS50::query("INSERT IGNORE INTO `markers` ($fields) VALUES(?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE timesUpdated = timesUpdated + 1", $item->pubMillis, $item->location->x, $item->location->y, $item->roadType, $item->street, $item->country, $item->city, $item->type, $item->subtype, $item->magvar, $item->reportRating, $item->confidence, $item->reliability);
+            $fields = "uuid, pubMillis, timesUpdated, longitude, latitude, roadType, street, country, city, type, subtype, magvar, reportDescription, reportRating, confidence, reliability";
+            $result = CS50::query("INSERT IGNORE INTO `markers` ($fields) VALUES(?, ?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE timesUpdated = timesUpdated + 1", $item->uuid, $item->pubMillis, $item->location->x, $item->location->y, $item->roadType, $item->street, $item->country, $item->city, $item->type, $item->subtype, $item->magvar, $item->reportDescription, $item->reportRating, $item->confidence, $item->reliability);
         }
     }
     if ($count === 0)
