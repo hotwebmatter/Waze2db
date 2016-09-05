@@ -1,4 +1,4 @@
-#!/usr/local/bin/php54
+#!/usr/local/bin/php54  // substitute the path to your own PHP 5.4 (maybe not necessary because path is supplied in crontab)
 <?php
 
     // TODO: import potholes from Waze GeoJSON feed into mySQL db
