@@ -37,14 +37,6 @@
             $count++;
             // echo("Got one!\n");
 
-//          if (!exists($item->roadType))
-//          {
-//              $item->roadType = -1;
-//          }
-//          if (!exists($item->city))
-//          {
-//              $item->city = "***UNDEFINED***";
-//          }
             // put it in the database
             $fields = "uuid, pubMillis, timesUpdated, longitude, latitude, roadType, street, country, city, type, subtype, magvar, reportDescription, reportRating, confidence, reliability";
             $result = CS50::query("INSERT IGNORE INTO `markers` ($fields) VALUES(?, ?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE timesUpdated = timesUpdated + 1", $item->uuid, $item->pubMillis, $item->location->x, $item->location->y, $item->roadType, $item->street, $item->country, $item->city, $item->type, $item->subtype, $item->magvar, $item->reportDescription, $item->reportRating, $item->confidence, $item->reliability);
