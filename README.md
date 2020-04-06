@@ -50,7 +50,7 @@ If you are using shared hosting, you might want to install it under `$HOME/bin/`
 
 # MySQL table structure
 
-First, you'll want to set up your database back-end. If you don't want to mess with the PHP PDO drivers, you'll use MySQL:
+First, you'll want to set up your database back-end:
 
     CREATE DATABASE IF NOT EXISTS 'mapdata`;
     
